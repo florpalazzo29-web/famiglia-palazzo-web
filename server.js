@@ -23,6 +23,19 @@ const PORT = process.env.PORT || CONFIG.porta || 3000;
 const SENHA_ADMIN = process.env.SENHA_ADMIN || CONFIG.senhaAdmin;
 
 /* ---------------- banco de dados (arquivo JSON) ---------------- */
+const DB_SEED = {
+  seq: 1001,
+  products: [
+    { id: 'funghi', nome: 'Risoto de Funghi Trufado', desc: 'Funghi selecionados e aroma trufado em um risoto profundo e aveludado.', peso: '270g', serve: '3 pessoas', preco: 89.0, estoque: 48, img: '/img/jar_funghi.jpg', ativo: true },
+    { id: 'shimeji', nome: 'Risoto de Shimeji Trufado com Abacaxi', desc: 'Shimeji, toque trufado e a leve doçura do abacaxi em perfeito equilíbrio.', peso: '270g', serve: '3 pessoas', preco: 89.0, estoque: 49, img: '/img/jar_shimeji.jpg', ativo: true },
+    { id: 'carneseca', nome: 'Risoto de Carne Seca com Banana', desc: 'O encontro afetivo da carne seca com a doçura da banana, à moda da casa.', peso: '270g', serve: '3 pessoas', preco: 89.0, estoque: 49, img: '/img/jar_carneseca.jpg', ativo: true }
+  ],
+  orders: []
+};
+if (!fs.existsSync(DB_FILE)) {
+  fs.mkdirSync(path.dirname(DB_FILE), { recursive: true });
+  fs.writeFileSync(DB_FILE, JSON.stringify(DB_SEED, null, 2));
+}
 let db = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
 let saveTimer = null;
 function save() {
