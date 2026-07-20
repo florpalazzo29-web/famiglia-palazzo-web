@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Famiglia Palazzo · Risotos Artesanais</title>
+<meta name="description" content="Risotos artesanais com herança italiana. Ingredientes selecionados, preparo simples e sabor de alta gastronomia — da nossa cozinha até a sua porta.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232B2119'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23F6F2EA' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F2EA;
+  --card:#FCFAF5;
+  --ink:#2B2119;
+  --ink-soft:#5C5147;
+  --gold:#A9803E;
+  --gold-deep:#8C6A31;
+  --oliva:#5E6647;
+  --line:rgba(43,33,25,.14);
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --sans:'Jost', system-ui, sans-serif;
+  --script:'Great Vibes', cursive;
+  --shadow:0 18px 50px -18px rgba(43,33,25,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16.5px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+::selection{background:var(--gold);color:#fff}
+
+.wrap{width:min(1160px,92%);margin-inline:auto}
+.eyebrow{font-family:var(--sans);font-weight:400;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-deep)}
+.h-display{font-family:var(--serif);font-weight:500;line-height:1.08;letter-spacing:.01em}
+.section{padding:clamp(4.5rem,9vw,7.5rem) 0}
+.center{text-align:center}
+
+/* laurel divider — assinatura da marca */
+.laurel{display:flex;align-items:center;justify-content:center;gap:.9rem;color:var(--gold);margin:1.1rem auto}
+.laurel::before,.laurel::after{content:"";height:1px;width:54px;background:linear-gradient(90deg,transparent,var(--gold));}
+.laurel::after{background:linear-gradient(90deg,var(--gold),transparent)}
+.laurel svg{width:16px;height:16px;flex:none}
+
+/* ---------- Header ---------- */
+header{position:fixed;inset:0 0 auto 0;z-index:60;transition:background .35s,box-shadow .35s, padding .35s}
+header .bar{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 0;transition:padding .35s}
+header.scrolled{background:rgba(246,242,234,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+header.scrolled .bar{padding:.65rem 0}
+.logo{text-align:center;line-height:1;color:var(--ink)}
+.logo .l1{font-family:var(--serif);font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;display:block;margin-left:.42em}
+.logo .l2{font-family:var(--serif);font-weight:600;font-size:1.55rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin:.1rem 0 .12rem;margin-left:.12em}
+.logo .l3{font-family:var(--serif);font-size:.62rem;letter-spacing:.5em;text-transform:uppercase;display:block;color:var(--gold-deep);margin-left:.5em}
+nav.desktop{display:flex;gap:2.1rem}
+nav.desktop a{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:400;position:relative;padding:.3rem 0}
+nav.desktop a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .3s}
+nav.desktop a:hover::after{width:100%}
+.h-actions{display:flex;align-items:center;gap:1.1rem}
+.cart-btn{position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;transition:background .25s}
+.cart-btn:hover{background:rgba(169,128,62,.14)}
+.cart-count{position:absolute;top:2px;right:0;min-width:19px;height:19px;border-radius:10px;background:var(--gold);color:#fff;font-size:.68rem;font-weight:500;display:grid;place-items:center;padding:0 5px;transform:scale(0);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.cart-count.show{transform:scale(1)}
+.burger{display:none;width:44px;height:44px;place-items:center}
+
+/* mobile nav */
+.mnav{position:fixed;inset:0;z-index:70;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.7,0,.3,1)}
+.mnav.open{transform:none}
+.mnav a{font-family:var(--serif);font-size:1.7rem;letter-spacing:.06em}
+.mnav .close-m{position:absolute;top:1.2rem;right:5%;width:48px;height:48px;display:grid;place-items:center}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:92svh;display:flex;align-items:center;background:
+  radial-gradient(60% 46% at 50% 0%,rgba(169,128,62,.12),transparent 70%),var(--paper)}
+.hero-inner{width:min(1160px,92%);margin:0 auto;padding:8.5rem 0 clamp(3rem,7vh,5rem);text-align:center}
+.hero h1{font-size:clamp(2.6rem,6.4vw,4.8rem);margin:1rem auto .8rem;max-width:16ch}
+.hero p.sub{font-size:clamp(1rem,1.6vw,1.2rem);font-weight:300;letter-spacing:.02em;max-width:46ch;margin:0 auto 2.2rem;color:var(--ink-soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;font-family:var(--sans);font-weight:500;font-size:.86rem;letter-spacing:.26em;text-transform:uppercase;padding:1.25rem 3.2rem;border-radius:999px;transition:transform .25s,box-shadow .25s,background .25s;will-change:transform}
+.btn-gold{background:linear-gradient(135deg,#C69A52,var(--gold) 55%,var(--gold-deep));color:#fff;box-shadow:0 14px 34px -10px rgba(169,128,62,.65)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 20px 44px -12px rgba(169,128,62,.75)}
+.btn-gold:active{transform:translateY(0) scale(.98)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-deep)}
+.hero .hint{margin-top:1.6rem;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* selos */
+.selos{border-block:1px solid var(--line);background:var(--card)}
+.selos .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:1.6rem 0;text-align:center}
+.selo{display:flex;flex-direction:column;align-items:center;gap:.45rem}
+.selo svg{width:26px;height:26px;color:var(--gold-deep)}
+.selo span{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;font-weight:400;color:var(--ink-soft)}
+
+/* ---------- História ---------- */
+.historia .grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2.5rem,6vw,5.5rem);align-items:center}
+.foto-frame{position:relative}
+.foto-frame img{width:100%;border-radius:2px;box-shadow:var(--shadow)}
+.foto-frame::before{content:"";position:absolute;inset:-14px;border:1px solid var(--gold);opacity:.35;border-radius:2px;pointer-events:none}
+.historia h2{font-size:clamp(2rem,4vw,3.1rem);margin:.8rem 0 1.4rem}
+.historia p{color:var(--ink-soft);margin-bottom:1.1rem;max-width:56ch}
+.historia p strong{font-weight:500;color:var(--ink)}
+
+/* ---------- Loja ---------- */
+.loja{background:linear-gradient(180deg,var(--paper),#EFE9DD 140%)}
+.loja h2{font-size:clamp(2rem,4vw,3.1rem)}
+.loja .lead{color:var(--ink-soft);max-width:52ch;margin:0 auto}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,2.6vw,2.2rem);margin-top:3.2rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s,box-shadow .35s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card .ph{background:#FFFFFF;aspect-ratio:4/5;overflow:hidden}
+.card .ph img{width:100%;height:100%;object-fit:cover;object-position:center 42%;transition:transform .6s cubic-bezier(.2,.6,.2,1)}
+.card:hover .ph img{transform:scale(1.045)}
+.card .body{padding:1.5rem 1.5rem 1.7rem;display:flex;flex-direction:column;gap:.55rem;flex:1}
+.card h3{font-family:var(--serif);font-weight:600;font-size:1.45rem;line-height:1.2}
+.card .desc{font-size:.92rem;color:var(--ink-soft);flex:1}
+.card .meta{display:flex;gap:1.1rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:400;margin-top:.2rem}
+.card .buy{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;gap:1rem}
+.card .price{font-family:var(--serif);font-weight:600;font-size:1.5rem}
+.card .add{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:#fff;background:var(--ink);padding:.85rem 1.4rem;border-radius:999px;transition:background .25s,transform .2s;white-space:nowrap}
+.card .add:hover{background:var(--gold-deep)}
+.card .add:active{transform:scale(.96)}
+.card .add.ok{background:var(--oliva)}
+
+/* ---------- Modo de preparo ---------- */
+.preparo h2{font-size:clamp(2.3rem,5vw,3.6rem)}
+.passos-txt{list-style:none;max-width:640px;margin:2.6rem auto 0}
+.passos-txt li{display:grid;grid-template-columns:auto 1fr;gap:1.3rem;align-items:start;padding:1.5rem 0;border-bottom:1px solid var(--line)}
+.passos-txt li:last-child{border-bottom:none}
+.passos-txt .n{font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;font-weight:500;color:#fff;background:var(--oliva);border-radius:999px;padding:.34rem .9rem;white-space:nowrap;margin-top:.2rem}
+.passos-txt p{font-size:1.08rem;color:var(--ink-soft)}
+.passos-txt p strong{font-weight:500;color:var(--ink)}
+
+/* ---------- Receitas ---------- */
+.receitas{background:var(--card);border-block:1px solid var(--line)}
+.receitas h2{font-size:clamp(2rem,4vw,3.1rem)}
+.harm{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.4rem,3vw,2.6rem);margin-top:3rem}
+.harm article{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:4px;transition:transform .3s,box-shadow .3s}
+.harm article:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.harm .body{padding:2rem 2rem 2.2rem}
+.harm h3{font-family:var(--serif);font-weight:600;font-size:1.6rem;margin-bottom:.5rem}
+.harm .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:.7rem 0 1rem}
+.harm .tag{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;border:1px solid var(--gold);color:var(--gold-deep);border-radius:999px;padding:.32rem .9rem}
+.harm p{font-size:.95rem;color:var(--ink-soft)}
+
+/* ---------- Entrega ---------- */
+.entrega{color:#F8F4EC;text-align:center;background:
+  radial-gradient(70% 90% at 50% 100%,rgba(169,128,62,.22),transparent 65%),#211913}
+.entrega .inner{padding:clamp(5rem,11vw,8.5rem) 0}
+.entrega .script{font-family:var(--script);font-size:clamp(2.6rem,6.5vw,4.8rem);line-height:1.15;color:#F1E3C8;display:block;margin:.6rem auto .9rem;max-width:18ch}
+.entrega p{max-width:52ch;margin:0 auto 2.2rem;color:rgba(248,244,236,.85)}
+.entrega .eyebrow{color:#D8BC87}
+
+/* ---------- Footer ---------- */
+footer{background:#211913;color:#CFC5B8;padding:4.5rem 0 2.2rem}
+footer .top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;padding-bottom:2.8rem;border-bottom:1px solid rgba(246,242,234,.12)}
+footer .logo{color:#F6F2EA;text-align:left}
+footer .logo .l3{color:#D8BC87}
+footer p{font-size:.9rem;max-width:34ch;margin-top:1rem;color:rgba(207,197,184,.85)}
+footer h4{font-family:var(--sans);font-weight:400;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:#D8BC87;margin-bottom:1.1rem}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;font-size:.92rem}
+footer ul a:hover{color:#fff}
+footer .base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:2rem;font-size:.78rem;letter-spacing:.06em;color:rgba(207,197,184,.6)}
+
+/* ---------- Cart drawer ---------- */
+.overlay{position:fixed;inset:0;background:rgba(28,20,14,.45);backdrop-filter:blur(3px);z-index:80;opacity:0;pointer-events:none;transition:opacity .35s}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--paper);z-index:90;transform:translateX(100%);transition:transform .45s cubic-bezier(.7,0,.3,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(28,20,14,.25)}
+.drawer.open{transform:none}
+.drawer .head{display:flex;align-items:center;justify-content:space-between;padding:1.3rem 1.6rem;border-bottom:1px solid var(--line)}
+.drawer .head h3{font-family:var(--serif);font-weight:600;font-size:1.4rem}
+.drawer .close{width:42px;height:42px;display:grid;place-items:center;border-radius:50%}
+.drawer .close:hover{background:rgba(169,128,62,.14)}
+.drawer .items{flex:1;overflow:auto;padding:1.2rem 1.6rem;display:flex;flex-direction:column;gap:1.1rem}
+.ci{display:grid;grid-template-columns:72px 1fr auto;gap:1rem;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:.8rem}
+.ci img{width:72px;height:90px;object-fit:cover;border-radius:2px}
+.ci h4{font-family:var(--serif);font-weight:600;font-size:1.05rem;line-height:1.2}
+.ci .u{font-size:.8rem;color:var(--ink-soft)}
+.qty{display:flex;align-items:center;gap:.4rem;margin-top:.5rem}
+.qty button{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:1rem;transition:border-color .2s,color .2s}
+.qty button:hover{border-color:var(--gold);color:var(--gold-deep)}
+.qty span{min-width:22px;text-align:center;font-weight:400}
+.ci .rm{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:.4rem}
+.ci .rm:hover{color:#9a4b3b}
+.ci .p{font-family:var(--serif);font-weight:600;font-size:1.1rem;text-align:right}
+.drawer .empty{margin:auto;text-align:center;color:var(--ink-soft);padding:2rem}
+.drawer .empty svg{width:44px;height:44px;margin:0 auto 1rem;color:var(--gold)}
+.drawer .foot{border-top:1px solid var(--line);padding:1.3rem 1.6rem;background:var(--card)}
+.drawer .sub{display:flex;justify-content:space-between;font-family:var(--serif);font-weight:600;font-size:1.25rem;margin-bottom:1rem}
+.drawer .foot .btn{width:100%}
+
+/* checkout */
+.checkout{position:fixed;inset:0;z-index:100;background:var(--paper);overflow:auto;transform:translateY(100%);transition:transform .5s cubic-bezier(.7,0,.3,1)}
+.checkout.open{transform:none}
+.checkout .inner{width:min(1060px,92%);margin:0 auto;padding:2.2rem 0 4rem}
+.checkout .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.2rem}
+.checkout h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,3.5vw,2.5rem)}
+.ck-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(1.6rem,4vw,3.2rem);align-items:start}
+.fgroup{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1.7rem;margin-bottom:1.4rem}
+.fgroup h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin-bottom:1.2rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.frow.three{grid-template-columns:2fr 1fr 1fr}
+.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.field label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;color:var(--ink-soft)}
+.field input,.field textarea,.field select{font-family:var(--sans);font-weight:300;font-size:1rem;padding:.85rem 1rem;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink);transition:border-color .2s;width:100%}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold)}
+.field textarea{min-height:90px;resize:vertical}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.pay label{border:1px solid var(--line);border-radius:4px;padding:1rem .6rem;text-align:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:400;cursor:pointer;transition:border-color .2s,background .2s;display:flex;flex-direction:column;gap:.5rem;align-items:center;background:#fff}
+.pay input{position:absolute;opacity:0}
+.pay svg{width:24px;height:24px;color:var(--gold-deep)}
+.pay label:has(input:checked){border-color:var(--gold);background:rgba(169,128,62,.08);box-shadow:0 0 0 1px var(--gold)}
+.resumo{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:1.7rem;position:sticky;top:1.5rem}
+.resumo h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin-bottom:1.1rem}
+.resumo .li{display:flex;justify-content:space-between;gap:1rem;font-size:.95rem;color:var(--ink-soft);margin-bottom:.6rem}
+.resumo .tot{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:1rem;padding-top:1rem;font-family:var(--serif);font-weight:600;font-size:1.35rem;color:var(--ink)}
+.cupom{display:flex;gap:.6rem;margin:.9rem 0 .2rem}
+.cupom input{flex:1;padding:.7rem .9rem;border:1px solid var(--line);border-radius:3px;font-family:var(--sans);font-weight:300}
+.cupom button{border:1px solid var(--ink);border-radius:3px;padding:.7rem 1.1rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;transition:background .2s,color .2s}
+.cupom button:hover{background:var(--ink);color:#fff}
+.resumo .btn{width:100%;margin-top:1.2rem}
+.ck-ok{max-width:520px;margin:12vh auto;text-align:center;padding:0 5%}
+.ck-ok svg{width:60px;height:60px;color:var(--oliva);margin:0 auto 1.4rem}
+.ck-ok h2{margin-bottom:.8rem}
+.ck-ok p{color:var(--ink-soft);margin-bottom:2rem}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:2rem;transform:translate(-50%,140%);background:var(--ink);color:#F6F2EA;font-size:.85rem;letter-spacing:.06em;padding:.9rem 1.6rem;border-radius:999px;z-index:120;transition:transform .4s cubic-bezier(.34,1.4,.64,1);box-shadow:var(--shadow)}
+.toast.show{transform:translate(-50%,0)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width:1020px){
+  footer .top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  nav.desktop{display:none}
+  .burger{display:grid}
+  .historia .grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
+  .harm{grid-template-columns:1fr}
+  .ck-grid{grid-template-columns:1fr}
+  .resumo{position:static}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .selos .wrap{grid-template-columns:1fr;gap:1.2rem;padding:1.9rem 0}
+  .passos-txt li{grid-template-columns:1fr;gap:.6rem}
+  .frow,.frow.three{grid-template-columns:1fr}
+  .pay{grid-template-columns:1fr}
+  .btn{width:100%;padding:1.25rem 1.5rem}
+  .hero-inner{padding-top:7.5rem}
+  .hero h1{font-size:2.35rem}
+  footer .top{grid-template-columns:1fr}
+  .card .buy{flex-direction:column;align-items:stretch;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= HEADER ======================= -->
+<header id="header">
+  <div class="wrap bar">
+    <a href="#inicio" class="logo" aria-label="Famiglia Palazzo Risotto — início">
+      <span class="l1">Famiglia</span>
+      <span class="l2">Palazzo</span>
+      <span class="l3">Risotto</span>
+    </a>
+    <nav class="desktop" aria-label="Navegação principal">
+      <a href="#historia">Nossa História</a>
+      <a href="#loja">Loja</a>
+      <a href="#preparo">Modo de Preparo</a>
+      <a href="#receitas">Harmonizações</a>
+      <a href="#entrega">Entrega</a>
+    </nav>
+    <div class="h-actions">
+      <button class="cart-btn" id="openCart" aria-label="Abrir carrinho de compras">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.2 12.2a1.5 1.5 0 0 1-1.5 1.8H6.3a1.5 1.5 0 0 1-1.5-1.8L6 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="openMenu" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mnav" id="mnav">
+  <button class="close-m" id="closeMenu" aria-label="Fechar menu">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <a href="#historia">Nossa História</a>
+  <a href="#loja">Loja</a>
+  <a href="#preparo">Modo de Preparo</a>
+  <a href="#receitas">Harmonizações</a>
+  <a href="#entrega">Entrega</a>
+</div>
+
+<main id="inicio">
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Risotos artesanais · Herança italiana</span>
+    <h1 class="h-display">A alta gastronomia italiana na sua mesa</h1>
+    <div class="laurel" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.6-9.2-9A5.2 5.2 0 0 1 12 6.5 5.2 5.2 0 0 1 21.2 12C19 16.4 12 21 12 21Z"/></svg></div>
+    <p class="sub">Ingredientes selecionados, receitas aperfeiçoadas por gerações e um preparo simples — pronto em cerca de 20 minutos.</p>
+    <a class="btn btn-gold" href="#loja" id="heroCta">Comprar agora</a>
+    <p class="hint">Serve 3 pessoas · 270g</p>
+  </div>
+</section>
+
+<!-- ======================= SELOS ======================= -->
+<div class="selos">
+  <div class="wrap">
+    <div class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-9.2-9A5.2 5.2 0 0 1 12 6.5 5.2 5.2 0 0 1 21.2 12C19 16.4 12 21 12 21Z"/></svg><span>Feito artesanalmente</span></div>
+    <div class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Pronto em ~20 minutos</span></div>
+    <div class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 19V9l6-4 6 4v10"/><path d="M10 19v-5h4v5"/></svg><span>Da nossa cozinha até a sua porta</span></div>
+  </div>
+</div>
+
+<!-- ======================= HISTÓRIA ======================= -->
+<section class="section historia" id="historia">
+  <div class="wrap grid">
+    <div class="foto-frame rv">
+      <img src="/img/ingredientes.jpg" alt="Ingredientes selecionados Famiglia Palazzo sendo adicionados ao risoto" loading="lazy">
+    </div>
+    <div class="rv">
+      <span class="eyebrow">Nossa História</span>
+      <h2 class="h-display">Uma tradição que atravessa gerações.</h2>
+      <p>A Famiglia Palazzo nasceu de uma inspiração vivida na Itália, onde a paixão pela boa gastronomia e pelos momentos à mesa deu origem às primeiras receitas. Desde então, essa tradição foi preservada e aperfeiçoada por gerações, mantendo o cuidado artesanal, a seleção de ingredientes de qualidade e o respeito aos sabores que marcaram sua origem.</p>
+      <p>Hoje, cada risoto carrega essa herança italiana, unindo <strong>tradição, afeto e excelência</strong> em uma experiência pensada para transformar qualquer refeição em um momento especial.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LOJA ======================= -->
+<section class="section loja" id="loja">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Loja</span>
+      <h2 class="h-display">Nossos risotos</h2>
+      <div class="laurel" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.6-9.2-9A5.2 5.2 0 0 1 12 6.5 5.2 5.2 0 0 1 21.2 12C19 16.4 12 21 12 21Z"/></svg></div>
+      <p class="lead">Três sabores autorais, feitos com grãos nobres e temperos naturais. Escolha o seu — ou leve os três.</p>
+    </div>
+
+    <div class="cards" id="cards"><!-- cards renderizados via JS --></div>
+  </div>
+</section>
+
+<!-- ======================= MODO DE PREPARO ======================= -->
+<section class="section preparo" id="preparo">
+  <div class="wrap">
+    <div class="center rv">
+      <h2 class="h-display">Modo de preparo</h2>
+      <div class="laurel" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.6-9.2-9A5.2 5.2 0 0 1 12 6.5 5.2 5.2 0 0 1 21.2 12C19 16.4 12 21 12 21Z"/></svg></div>
+    </div>
+    <ol class="passos-txt">
+      <li class="rv"><span class="n">Passo 01</span><p>Em uma panela, coloque <strong>1 colher de sopa de manteiga</strong> e comece a aquecer.</p></li>
+      <li class="rv"><span class="n">Passo 02</span><p>Adicione o conteúdo do <strong>risoto</strong> e comece a <strong>refogar</strong> levemente.</p></li>
+      <li class="rv"><span class="n">Passo 03</span><p>Adicione <strong>80 ml de vinho branco</strong> e deixe evaporar em fogo baixo.</p></li>
+      <li class="rv"><span class="n">Passo 04</span><p>Adicione a <strong>água quente</strong> aos poucos, <strong>mexendo</strong> sempre.</p></li>
+      <li class="rv"><span class="n">Passo 05</span><p>Finalize com <strong>queijo</strong> e uma colher de <strong>manteiga</strong>, <strong>misture bem</strong> e sirva <strong>imediatamente</strong>.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================= RECEITAS & HARMONIZAÇÕES ======================= -->
+<section class="section receitas" id="receitas">
+  <div class="wrap">
+    <div class="center rv">
+      <span class="eyebrow">Receitas &amp; Harmonizações</span>
+      <h2 class="h-display">Combinações que elevam a experiência</h2>
+      <div class="laurel" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.6-9.2-9A5.2 5.2 0 0 1 12 6.5 5.2 5.2 0 0 1 21.2 12C19 16.4 12 21 12 21Z"/></svg></div>
+    </div>
+    <div class="harm">
+      <article class="rv">
+        <div class="body">
+          <h3>Risoto de Funghi Trufado</h3>
+          <div class="tags"><span class="tag">Carnes vermelhas</span><span class="tag">Queijos</span></div>
+          <p>Os sabores intensos do funghi e o aroma trufado pedem companhias à altura: harmonize com carnes vermelhas suculentas e queijos de sabor marcante, que realçam a profundidade de cada garfada.</p>
+        </div>
+      </article>
+      <article class="rv">
+        <div class="body">
+          <h3>Risoto de Shimeji Trufado com Abacaxi</h3>
+          <div class="tags"><span class="tag">Peixes</span><span class="tag">Camarões</span><span class="tag">Queijos</span></div>
+          <p>A combinação entre o sabor do shimeji, o toque trufado e a leve doçura do abacaxi harmoniza especialmente com peixes delicados, camarões e queijos — um equilíbrio elegante entre o mar e a terra.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ENTREGA ======================= -->
+<section class="entrega" id="entrega">
+  <div class="wrap inner">
+    <span class="eyebrow">Entrega</span>
+    <span class="script">Da nossa cozinha até a sua porta.</span>
+    <p>Cada pote é preparado com atenção, embalado com cuidado e entregue diretamente a você — para que o momento especial comece no instante em que a encomenda chega.</p>
+    <a class="btn btn-gold" href="#loja">Comprar agora</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <span class="logo">
+          <span class="l1">Famiglia</span>
+          <span class="l2">Palazzo</span>
+          <span class="l3">Risotto</span>
+        </span>
+        <p>Risotos artesanais com herança italiana. Tradição, afeto e excelência em cada pote.</p>
+      </div>
+      <div>
+        <h4>Navegue</h4>
+        <ul>
+          <li><a href="#historia">Nossa História</a></li>
+          <li><a href="#loja">Loja</a></li>
+          <li><a href="#preparo">Modo de Preparo</a></li>
+          <li><a href="#receitas">Harmonizações</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="#entrega">Entrega</a></li>
+          <li><a href="#loja">Comprar agora</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="base">
+      <span>© <span id="yy"></span> Famiglia Palazzo Risotto. Todos os direitos reservados.</span>
+      <span>Feito com cuidado, servido com amor.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================= CARRINHO ======================= -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Carrinho de compras">
+  <div class="head">
+    <h3>Seu carrinho</h3>
+    <button class="close" id="closeCart" aria-label="Fechar carrinho">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="items" id="cartItems"></div>
+  <div class="foot" id="cartFoot" hidden>
+    <div class="sub"><span>Subtotal</span><span id="cartSubtotal">R$ 0,00</span></div>
+    <button class="btn btn-gold" id="goCheckout">Finalizar pedido</button>
+  </div>
+</aside>
+
+<!-- ======================= CHECKOUT ======================= -->
+<div class="checkout" id="checkout" aria-label="Finalização do pedido">
+  <div class="inner" id="ckForm">
+    <div class="topbar">
+      <h2>Finalizar pedido</h2>
+      <button class="btn-ghost btn" id="backShop" style="padding:.8rem 1.6rem;font-size:.72rem">Voltar à loja</button>
+    </div>
+    <form id="orderForm" class="ck-grid" novalidate>
+      <div>
+        <div class="fgroup">
+          <h3>Seus dados</h3>
+          <div class="frow">
+            <div class="field"><label for="f-nome">Nome completo</label><input id="f-nome" name="nome" required autocomplete="name"></div>
+            <div class="field"><label for="f-tel">Telefone / WhatsApp</label><input id="f-tel" name="telefone" required inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000"></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+            <div class="field"><label for="f-cpf">CPF</label><input id="f-cpf" name="cpf" required inputmode="numeric" placeholder="000.000.000-00"></div>
+          </div>
+        </div>
+        <div class="fgroup">
+          <h3>Endereço de entrega</h3>
+          <div class="frow three">
+            <div class="field"><label for="f-end">Endereço</label><input id="f-end" name="endereco" required autocomplete="street-address"></div>
+            <div class="field"><label for="f-cep">CEP</label><input id="f-cep" name="cep" required inputmode="numeric" placeholder="00000-000" autocomplete="postal-code"></div>
+            <div class="field"><label for="f-num">Número</label><input id="f-num" name="numero" required></div>
+          </div>
+          <div class="frow three">
+            <div class="field"><label for="f-comp">Complemento</label><input id="f-comp" name="complemento"></div>
+            <div class="field"><label for="f-cid">Cidade</label><input id="f-cid" name="cidade" required autocomplete="address-level2"></div>
+            <div class="field"><label for="f-uf">Estado</label>
+              <select id="f-uf" name="estado" required>
+                <option value="">UF</option>
+                <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="f-obs">Observações</label><textarea id="f-obs" name="observacoes" placeholder="Alguma orientação para a entrega?"></textarea></div>
+        </div>
+        <div class="fgroup">
+          <h3>Pagamento</h3>
+          <!-- Integração de pagamento: estrutura preparada.
+               Conecte aqui o checkout do seu provedor (Mercado Pago, Stripe, Pagar.me…)
+               usando o valor de `pagamento` enviado no submit. -->
+          <div class="pay" role="radiogroup" aria-label="Forma de pagamento">
+            <label><input type="radio" name="pagamento" value="pix" checked>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M12 3l4.5 4.5L21 12l-4.5 4.5L12 21l-4.5-4.5L3 12l4.5-4.5L12 3Z"/></svg>
+              PIX</label>
+            <label><input type="radio" name="pagamento" value="credito">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>
+              Crédito</label>
+            <label><input type="radio" name="pagamento" value="debito">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M7 15h4"/></svg>
+              Débito</label>
+          </div>
+        </div>
+      </div>
+      <aside class="resumo">
+        <h3>Resumo do pedido</h3>
+        <div id="resumoItems"></div>
+        <div class="cupom">
+          <input id="f-cupom" name="cupom" placeholder="Cupom de desconto" aria-label="Cupom de desconto">
+          <button type="button" id="applyCupom">Aplicar</button>
+        </div>
+        <div class="li" id="descLine" hidden><span>Desconto</span><span id="descVal"></span></div>
+        <div class="tot"><span>Total</span><span id="ckTotal">R$ 0,00</span></div>
+        <button class="btn btn-gold" type="submit">Confirmar pedido</button>
+      </aside>
+    </form>
+  </div>
+  <div class="ck-ok" id="ckOk" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12.5 2.6 2.6L16 9.5"/></svg>
+    <h2 class="h-display">Pedido recebido!</h2>
+    <p id="okMsg">Grazie! Recebemos o seu pedido e em breve entraremos em contato para confirmar o pagamento e a entrega.</p>
+    <button class="btn btn-gold" id="okBack">Voltar ao início</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================
+   FAMIGLIA PALAZZO — loja conectada ao servidor
+   Produtos, pedidos e cupons vêm da API (server.js).
+   ===================================================== */
+let PRODUCTS = [];
+let cart = {};            // id -> quantidade
+let cupom = null;         // {codigo, percentual}
+
+const BRL = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+/* ---------- carregar produtos ---------- */
+const cardsEl = document.getElementById('cards');
+async function loadProducts() {
+  try {
+    const r = await fetch('/api/products');
+    PRODUCTS = await r.json();
+  } catch {
+    cardsEl.innerHTML = '<p class="center" style="grid-column:1/-1;color:var(--ink-soft)">Não foi possível carregar os produtos. Verifique se o servidor está rodando (node server.js).</p>';
+    return;
+  }
+  cardsEl.innerHTML = PRODUCTS.map(p => `
+  <article class="card rv in">
+    <div class="ph"><img src="${p.img}" alt="Pote do ${p.nome}, ${p.peso}" loading="lazy"></div>
+    <div class="body">
+      <h3>${p.nome}</h3>
+      <p class="desc">${p.desc}</p>
+      <div class="meta"><span>${p.peso}</span><span>Serve ${p.serve}</span></div>
+      <div class="buy">
+        <span class="price">${BRL(p.preco)}</span>
+        ${p.estoque > 0
+          ? `<button class="add" data-id="${p.id}" aria-label="Adicionar ${p.nome} ao carrinho">Adicionar</button>`
+          : `<span class="add" style="background:var(--ink-soft);cursor:not-allowed">Esgotado</span>`}
+      </div>
+    </div>
+  </article>`).join('');
+}
+loadProducts();
+
+/* ---------- carrinho ---------- */
+const drawer = document.getElementById('drawer'), overlay = document.getElementById('overlay');
+const cartItems = document.getElementById('cartItems'), cartFoot = document.getElementById('cartFoot');
+const cartCount = document.getElementById('cartCount'), cartSubtotal = document.getElementById('cartSubtotal');
+
+function openCart() { drawer.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+function closeCart() { drawer.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
+document.getElementById('openCart').addEventListener('click', openCart);
+document.getElementById('closeCart').addEventListener('click', closeCart);
+overlay.addEventListener('click', closeCart);
+
+function totals() {
+  let n = 0, s = 0;
+  for (const id in cart) { const p = PRODUCTS.find(x => x.id === id); if (p) { n += cart[id]; s += p.preco * cart[id]; } }
+  return { n, s };
+}
+function renderCart() {
+  const { n, s } = totals();
+  cartCount.textContent = n; cartCount.classList.toggle('show', n > 0);
+  if (n === 0) {
+    cartItems.innerHTML = `<div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1.2 12.2a1.5 1.5 0 0 1-1.5 1.8H6.3a1.5 1.5 0 0 1-1.5-1.8L6 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <p>Seu carrinho está vazio.<br>Que tal experimentar um dos nossos risotos?</p></div>`;
+    cartFoot.hidden = true; return;
+  }
+  cartFoot.hidden = false;
+  cartSubtotal.textContent = BRL(s);
+  cartItems.innerHTML = Object.keys(cart).map(id => {
+    const p = PRODUCTS.find(x => x.id === id), q = cart[id];
+    return `<div class="ci">
+      <img src="${p.img}" alt="">
+      <div>
+        <h4>${p.nome}</h4>
+        <span class="u">${BRL(p.preco)} · ${p.peso}</span>
+        <div class="qty">
+          <button data-a="dec" data-id="${id}" aria-label="Diminuir quantidade">−</button>
+          <span>${q}</span>
+          <button data-a="inc" data-id="${id}" aria-label="Aumentar quantidade">+</button>
+        </div>
+        <button class="rm" data-a="rm" data-id="${id}">Remover</button>
+      </div>
+      <span class="p">${BRL(p.preco * q)}</span>
+    </div>`;
+  }).join('');
+}
+cartItems.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const { a, id } = b.dataset;
+  if (a === 'inc') cart[id]++;
+  if (a === 'dec') { cart[id]--; if (cart[id] <= 0) delete cart[id]; }
+  if (a === 'rm') delete cart[id];
+  renderCart();
+});
+document.addEventListener('click', e => {
+  const b = e.target.closest('button.add'); if (!b) return;
+  const id = b.dataset.id;
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
+  b.textContent = 'Adicionado ✓'; b.classList.add('ok');
+  setTimeout(() => { b.textContent = 'Adicionar'; b.classList.remove('ok'); }, 1400);
+  toast('Adicionado ao carrinho');
+});
+
+/* ---------- toast ---------- */
+let toastT;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+/* ---------- checkout ---------- */
+const checkout = document.getElementById('checkout');
+const ckForm = document.getElementById('ckForm'), ckOk = document.getElementById('ckOk');
+
+function renderResumo() {
+  const { s } = totals();
+  document.getElementById('resumoItems').innerHTML = Object.keys(cart).map(id => {
+    const p = PRODUCTS.find(x => x.id === id);
+    return `<div class="li"><span>${cart[id]}× ${p.nome}</span><span>${BRL(p.preco * cart[id])}</span></div>`;
+  }).join('');
+  const d = cupom ? s * cupom.percentual : 0;
+  document.getElementById('descLine').hidden = !cupom;
+  document.getElementById('descVal').textContent = '− ' + BRL(d);
+  document.getElementById('ckTotal').textContent = BRL(s - d);
+}
+document.getElementById('goCheckout').addEventListener('click', () => {
+  closeCart(); renderResumo();
+  ckForm.hidden = false; ckOk.hidden = true;
+  checkout.classList.add('open'); document.body.style.overflow = 'hidden';
+});
+function closeCheckout() { checkout.classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('backShop').addEventListener('click', e => { e.preventDefault(); closeCheckout(); });
+document.getElementById('okBack').addEventListener('click', () => { closeCheckout(); window.scrollTo({ top: 0 }); });
+
+/* cupom validado no servidor */
+document.getElementById('applyCupom').addEventListener('click', async () => {
+  const v = document.getElementById('f-cupom').value.trim();
+  if (!v) { cupom = null; renderResumo(); return toast('Digite um cupom'); }
+  const r = await fetch('/api/cupom', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ codigo: v }) });
+  if (r.ok) { cupom = await r.json(); toast(`Cupom aplicado: ${Math.round(cupom.percentual * 100)}% de desconto`); }
+  else { cupom = null; toast('Cupom não encontrado'); }
+  renderResumo();
+});
+
+/* envio do pedido para o servidor */
+document.getElementById('orderForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.itens = Object.keys(cart).map(id => ({ id, qtd: cart[id] }));
+  data.cupom = cupom ? cupom.codigo : '';
+
+  const btn = form.querySelector('button[type=submit]');
+  btn.disabled = true; btn.textContent = 'Enviando…';
+  try {
+    const r = await fetch('/api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    const resp = await r.json();
+    if (!r.ok) { toast(resp.erro || 'Não foi possível enviar o pedido'); return; }
+
+    let msg = `Grazie, ${data.nome.split(' ')[0]}! Seu pedido <strong>${resp.numero}</strong> de <strong>${BRL(resp.total)}</strong> foi registrado.`;
+    if (resp.pagamento === 'pix' && resp.pix) {
+      msg += `<br><br>Para concluir, faça o PIX para:<br>
+        <span style="display:inline-block;margin-top:.6rem;padding:.9rem 1.2rem;border:1px solid var(--line);border-radius:4px;background:#fff">
+        <strong>${resp.pix.favorecido}</strong> · ${resp.pix.banco}<br>
+        Chave: <strong id="pixKey">${resp.pix.chave}</strong></span><br>
+        <button type="button" class="btn btn-ghost" style="margin-top:.9rem;padding:.7rem 1.4rem;font-size:.72rem" onclick="navigator.clipboard.writeText('${resp.pix.chave}');toast('Chave PIX copiada')">Copiar chave PIX</button><br><br>
+        Assim que o pagamento for identificado, confirmaremos pelo WhatsApp.`;
+    } else {
+      msg += `<br><br>Em breve entraremos em contato pelo WhatsApp para concluir o pagamento no cartão e combinar a entrega.`;
+    }
+    document.getElementById('okMsg').innerHTML = msg;
+    cart = {}; cupom = null; renderCart(); loadProducts();
+    form.reset();
+    ckForm.hidden = true; ckOk.hidden = false; checkout.scrollTop = 0;
+  } catch {
+    toast('Falha de conexão com o servidor');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Confirmar pedido';
+  }
+});
+
+/* ---------- header / menu / animações ---------- */
+const header = document.getElementById('header');
+addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 40), { passive: true });
+const mnav = document.getElementById('mnav');
+document.getElementById('openMenu').addEventListener('click', () => mnav.classList.add('open'));
+document.getElementById('closeMenu').addEventListener('click', () => mnav.classList.remove('open'));
+mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mnav.classList.remove('open')));
+
+const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .12 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+document.getElementById('yy').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

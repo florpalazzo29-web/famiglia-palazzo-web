@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel · Famiglia Palazzo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232B2119'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23F6F2EA' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F2EA;--card:#FCFAF5;--ink:#2B2119;--ink-soft:#5C5147;
+  --gold:#A9803E;--gold-deep:#8C6A31;--oliva:#5E6647;--line:rgba(43,33,25,.14);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif;
+  --shadow:0 18px 50px -18px rgba(43,33,25,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:var(--sans);font-weight:300;font-size:1rem;padding:.75rem .9rem;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.serif{font-family:var(--serif);font-weight:600}
+.eyebrow{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;padding:.95rem 2rem;border-radius:999px;transition:.25s}
+.btn-gold{background:linear-gradient(135deg,#C69A52,var(--gold) 55%,var(--gold-deep));color:#fff;box-shadow:0 10px 26px -10px rgba(169,128,62,.6)}
+.btn-gold:hover{transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-deep)}
+.btn-sm{padding:.55rem 1.1rem;font-size:.68rem}
+
+/* login */
+.login{min-height:100svh;display:grid;place-items:center;padding:1rem}
+.login .box{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2.6rem 2.4rem;width:min(400px,100%);box-shadow:var(--shadow);text-align:center}
+.logo{line-height:1;margin-bottom:1.6rem}
+.logo .l1{font-family:var(--serif);font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;display:block;margin-left:.42em}
+.logo .l2{font-family:var(--serif);font-weight:600;font-size:1.7rem;letter-spacing:.12em;text-transform:uppercase;display:block;margin:.15rem 0}
+.logo .l3{font-family:var(--serif);font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;display:block;color:var(--gold-deep);margin-left:.5em}
+.login label{display:block;text-align:left;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 .4rem}
+.login .btn{width:100%;margin-top:1.1rem}
+.err{color:#9a4b3b;font-size:.85rem;margin-top:.8rem;min-height:1.2em}
+
+/* app shell */
+.shell{display:none;min-height:100svh}
+.shell.on{display:block}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(246,242,234,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .in{width:min(1240px,94%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.8rem 0;gap:1rem;flex-wrap:wrap}
+.topbar .logo{margin:0;text-align:left}
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap}
+.tabs button{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:400;padding:.6rem 1.2rem;border-radius:999px;transition:.2s}
+.tabs button:hover{background:rgba(169,128,62,.12)}
+.tabs button.on{background:var(--ink);color:#fff}
+.main{width:min(1240px,94%);margin:0 auto;padding:2.2rem 0 4rem}
+.panel{display:none}.panel.on{display:block}
+h2.serif{font-size:1.9rem;margin-bottom:1.4rem}
+
+/* pedidos */
+.filters{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.4rem;align-items:center}
+.filters select,.filters input{width:auto}
+.order{background:var(--card);border:1px solid var(--line);border-radius:5px;margin-bottom:1rem;overflow:hidden}
+.order .head{display:flex;align-items:center;gap:1rem;justify-content:space-between;padding:1rem 1.3rem;cursor:pointer;flex-wrap:wrap}
+.order .head:hover{background:rgba(169,128,62,.05)}
+.order .who{display:flex;flex-direction:column}
+.order .who b{font-weight:500}
+.order .who span{font-size:.82rem;color:var(--ink-soft)}
+.order .right{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.order .tot{font-family:var(--serif);font-weight:600;font-size:1.2rem}
+.badge{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;padding:.35rem .85rem;border-radius:999px;white-space:nowrap}
+.b-aguardando_pagamento{background:#E8DFC9;color:#7a6425}
+.b-novo{background:#E3E7F0;color:#3d4d78}
+.b-pago{background:#DCE6D4;color:#3f5a2e}
+.b-em_preparo{background:#F0E4D2;color:#8a5a1e}
+.b-enviado{background:#DEE9EC;color:#2e5a66}
+.b-entregue{background:#DCE6D4;color:#3f5a2e}
+.b-cancelado{background:#F0DAD5;color:#8a3a2a}
+.order .det{display:none;border-top:1px solid var(--line);padding:1.2rem 1.3rem;background:#fff}
+.order.open .det{display:grid;grid-template-columns:1.2fr 1fr;gap:1.6rem}
+.det h4{font-family:var(--serif);font-weight:600;font-size:1.05rem;margin-bottom:.5rem}
+.det .li{display:flex;justify-content:space-between;font-size:.92rem;color:var(--ink-soft);padding:.25rem 0}
+.det .info p{font-size:.92rem;color:var(--ink-soft)}
+.det .info b{font-weight:500;color:var(--ink)}
+.statusrow{display:flex;gap:.7rem;align-items:center;margin-top:1rem;flex-wrap:wrap}
+
+/* produtos */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:5px;overflow:hidden;display:flex;flex-direction:column}
+.pcard img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#fff}
+.pcard .b{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+.pcard h3{font-family:var(--serif);font-weight:600;font-size:1.15rem;line-height:1.2}
+.pcard .m{font-size:.82rem;color:var(--ink-soft)}
+.pcard .row{display:flex;gap:.5rem;margin-top:auto;padding-top:.7rem;flex-wrap:wrap}
+.off{opacity:.55}
+.newp{border:1.5px dashed var(--gold);border-radius:5px;display:grid;place-items:center;min-height:220px;color:var(--gold-deep);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:.2s}
+.newp:hover{background:rgba(169,128,62,.07)}
+
+/* modal produto */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(28,20,14,.5);display:none;place-items:center;padding:1rem;overflow:auto}
+.modal.on{display:grid}
+.modal .box{background:var(--paper);border-radius:6px;width:min(560px,100%);padding:1.8rem;box-shadow:var(--shadow);margin:auto}
+.modal h3{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin-bottom:1.2rem}
+.f{margin-bottom:.9rem}
+.f label{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.35rem}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.imgprev{display:flex;align-items:center;gap:1rem}
+.imgprev img{width:70px;height:70px;object-fit:cover;border-radius:4px;border:1px solid var(--line);background:#fff}
+.modal .acts{display:flex;justify-content:flex-end;gap:.7rem;margin-top:1.4rem;flex-wrap:wrap}
+
+/* relatório */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.1rem;margin-bottom:2rem}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1.3rem 1.4rem}
+.stat .v{font-family:var(--serif);font-weight:600;font-size:2rem;line-height:1.1}
+.stat .k{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-top:.3rem}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+th,td{text-align:left;padding:.8rem 1.1rem;font-size:.92rem;border-bottom:1px solid var(--line)}
+th{font-weight:400;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);background:rgba(169,128,62,.06)}
+tr:last-child td{border-bottom:none}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+
+.toast{position:fixed;left:50%;bottom:1.6rem;transform:translate(-50%,140%);background:var(--ink);color:#F6F2EA;font-size:.85rem;padding:.85rem 1.5rem;border-radius:999px;z-index:99;transition:transform .35s;box-shadow:var(--shadow)}
+.toast.show{transform:translate(-50%,0)}
+.empty-msg{color:var(--ink-soft);padding:2rem;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:5px}
+@media (max-width:640px){.order.open .det{grid-template-columns:1fr}.f2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div class="login" id="login">
+  <form class="box" id="loginForm">
+    <div class="logo">
+      <span class="l1">Famiglia</span><span class="l2">Palazzo</span><span class="l3">Painel Administrativo</span>
+    </div>
+    <label for="senha">Senha de acesso</label>
+    <input type="password" id="senha" autocomplete="current-password" required>
+    <button class="btn btn-gold" type="submit">Entrar</button>
+    <p class="err" id="loginErr"></p>
+  </form>
+</div>
+
+<!-- ===== APP ===== -->
+<div class="shell" id="shell">
+  <div class="topbar">
+    <div class="in">
+      <span class="logo">
+        <span class="l1">Famiglia</span><span class="l2">Palazzo</span><span class="l3">Painel</span>
+      </span>
+      <nav class="tabs" aria-label="Seções do painel">
+        <button data-tab="pedidos" class="on">Pedidos</button>
+        <button data-tab="produtos">Produtos</button>
+        <button data-tab="relatorio">Relatório</button>
+      </nav>
+      <div style="display:flex;gap:.6rem">
+        <a class="btn btn-ghost btn-sm" href="/" target="_blank" style="text-decoration:none">Ver loja</a>
+        <button class="btn btn-ghost btn-sm" id="logout">Sair</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- ===== PEDIDOS ===== -->
+    <section class="panel on" id="tab-pedidos">
+      <h2 class="serif">Pedidos</h2>
+      <div class="filters">
+        <select id="fStatus" aria-label="Filtrar por status">
+          <option value="">Todos os status</option>
+          <option value="aguardando_pagamento">Aguardando pagamento</option>
+          <option value="pago">Pago</option>
+          <option value="em_preparo">Em preparo</option>
+          <option value="enviado">Enviado</option>
+          <option value="entregue">Entregue</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
+        <input id="fBusca" placeholder="Buscar por nome, nº do pedido…" aria-label="Buscar pedidos" style="max-width:280px">
+        <button class="btn btn-ghost btn-sm" id="reloadOrders">Atualizar</button>
+      </div>
+      <div id="ordersList"></div>
+    </section>
+
+    <!-- ===== PRODUTOS ===== -->
+    <section class="panel" id="tab-produtos">
+      <h2 class="serif">Produtos</h2>
+      <div class="pgrid" id="prodGrid"></div>
+    </section>
+
+    <!-- ===== RELATÓRIO ===== -->
+    <section class="panel" id="tab-relatorio">
+      <h2 class="serif">Relatório</h2>
+      <div class="stats" id="stats"></div>
+      <h3 class="serif" style="font-size:1.3rem;margin:1.6rem 0 .8rem">Vendas por produto</h3>
+      <table id="repTable">
+        <thead><tr><th>Produto</th><th style="text-align:right">Unidades</th><th style="text-align:right">Receita</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </div>
+</div>
+
+<!-- ===== MODAL PRODUTO ===== -->
+<div class="modal" id="pModal">
+  <form class="box" id="pForm">
+    <h3 id="pTitle">Novo produto</h3>
+    <input type="hidden" id="p-id">
+    <div class="f"><label for="p-nome">Nome</label><input id="p-nome" required></div>
+    <div class="f"><label for="p-desc">Descrição curta</label><textarea id="p-desc" rows="2"></textarea></div>
+    <div class="f2">
+      <div class="f"><label for="p-preco">Preço (R$)</label><input id="p-preco" type="number" step="0.01" min="0" required></div>
+      <div class="f"><label for="p-estoque">Estoque</label><input id="p-estoque" type="number" min="0" value="0" required></div>
+    </div>
+    <div class="f2">
+      <div class="f"><label for="p-peso">Peso</label><input id="p-peso" value="270g"></div>
+      <div class="f"><label for="p-serve">Serve</label><input id="p-serve" value="3 pessoas"></div>
+    </div>
+    <div class="f">
+      <label for="p-img">Foto do produto</label>
+      <div class="imgprev">
+        <img id="p-prev" alt="" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 70'%3E%3Crect width='70' height='70' fill='%23fff'/%3E%3C/svg%3E">
+        <input id="p-img" type="file" accept="image/jpeg,image/png,image/webp">
+      </div>
+    </div>
+    <div class="f" style="display:flex;align-items:center;gap:.6rem">
+      <input type="checkbox" id="p-ativo" checked style="width:auto"><label for="p-ativo" style="margin:0">Visível na loja</label>
+    </div>
+    <div class="acts">
+      <button type="button" class="btn btn-ghost btn-sm" id="pCancel">Cancelar</button>
+      <button type="submit" class="btn btn-gold btn-sm">Salvar produto</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const BRL = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const STATUS_LABEL = {aguardando_pagamento:'Aguardando pagamento',novo:'Novo',pago:'Pago',em_preparo:'Em preparo',enviado:'Enviado',entregue:'Entregue',cancelado:'Cancelado'};
+let toastT;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2400)}
+async function api(url,opt={}){
+  const r=await fetch(url,{headers:{'Content-Type':'application/json'},...opt});
+  if(r.status===401){show(false);throw new Error('login')}
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok){toast(d.erro||'Erro');throw new Error(d.erro)}
+  return d;
+}
+function show(logged){
+  $('#login').style.display=logged?'none':'grid';
+  $('#shell').classList.toggle('on',logged);
+}
+
+/* ---- login ---- */
+$('#loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  try{
+    await api('/api/admin/login',{method:'POST',body:JSON.stringify({senha:$('#senha').value})});
+    $('#loginErr').textContent='';show(true);loadAll();
+  }catch{ $('#loginErr').textContent='Senha incorreta.'; }
+});
+$('#logout').addEventListener('click',async()=>{await api('/api/admin/logout',{method:'POST'});show(false)});
+
+/* ---- abas ---- */
+document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on',p.id==='tab-'+b.dataset.tab));
+  if(b.dataset.tab==='relatorio')loadReport();
+}));
+
+/* ---- pedidos ---- */
+let ORDERS=[];
+async function loadOrders(){
+  ORDERS=await api('/api/admin/orders');renderOrders();
+}
+function renderOrders(){
+  const st=$('#fStatus').value, q=$('#fBusca').value.trim().toLowerCase();
+  const list=ORDERS.filter(o=>(!st||o.status===st)&&(!q||o.numero.toLowerCase().includes(q)||o.cliente.nome.toLowerCase().includes(q)));
+  if(!list.length){$('#ordersList').innerHTML='<p class="empty-msg">Nenhum pedido por aqui ainda. Assim que um cliente comprar na loja, ele aparece nesta lista.</p>';return}
+  $('#ordersList').innerHTML=list.map(o=>`
+  <div class="order" data-id="${o.id}">
+    <div class="head" role="button" tabindex="0" aria-expanded="false">
+      <div class="who">
+        <b>${o.numero} · ${o.cliente.nome}</b>
+        <span>${new Date(o.criadoEm).toLocaleString('pt-BR')} · ${o.itens.reduce((s,i)=>s+i.qtd,0)} item(ns) · ${{pix:'PIX',credito:'Crédito',debito:'Débito'}[o.pagamento]}</span>
+      </div>
+      <div class="right">
+        <span class="tot">${BRL(o.total)}</span>
+        <span class="badge b-${o.status}">${STATUS_LABEL[o.status]}</span>
+      </div>
+    </div>
+    <div class="det">
+      <div>
+        <h4>Itens</h4>
+        ${o.itens.map(i=>`<div class="li"><span>${i.qtd}× ${i.nome}</span><span>${BRL(i.preco*i.qtd)}</span></div>`).join('')}
+        ${o.cupom?`<div class="li"><span>Cupom ${o.cupom}</span><span>− ${BRL(o.desconto)}</span></div>`:''}
+        <div class="li" style="font-weight:500;color:var(--ink)"><span>Total</span><span>${BRL(o.total)}</span></div>
+        <div class="statusrow">
+          <label style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)">Status:</label>
+          <select data-status="${o.id}">
+            ${Object.keys(STATUS_LABEL).filter(s=>s!=='novo').map(s=>`<option value="${s}" ${s===o.status?'selected':''}>${STATUS_LABEL[s]}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="info">
+        <h4>Cliente</h4>
+        <p><b>${o.cliente.nome}</b><br>
+        ${o.cliente.telefone} · ${o.cliente.email}<br>
+        CPF: ${o.cliente.cpf}<br><br>
+        ${o.cliente.endereco}, ${o.cliente.numero}${o.cliente.complemento?' – '+o.cliente.complemento:''}<br>
+        ${o.cliente.cidade} – ${o.cliente.estado} · CEP ${o.cliente.cep}</p>
+        ${o.observacoes?`<p style="margin-top:.6rem"><b>Observações:</b> ${o.observacoes}</p>`:''}
+      </div>
+    </div>
+  </div>`).join('');
+}
+$('#ordersList').addEventListener('click',e=>{
+  const h=e.target.closest('.head');
+  if(h && !e.target.closest('select')){const o=h.parentElement;o.classList.toggle('open');h.setAttribute('aria-expanded',o.classList.contains('open'))}
+});
+$('#ordersList').addEventListener('keydown',e=>{
+  if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('head')){e.preventDefault();e.target.parentElement.classList.toggle('open')}
+});
+$('#ordersList').addEventListener('change',async e=>{
+  const id=e.target.dataset.status;if(!id)return;
+  await api('/api/admin/orders/'+id,{method:'PATCH',body:JSON.stringify({status:e.target.value})});
+  toast('Status atualizado');loadOrders();
+});
+$('#fStatus').addEventListener('change',renderOrders);
+$('#fBusca').addEventListener('input',renderOrders);
+$('#reloadOrders').addEventListener('click',loadOrders);
+
+/* ---- produtos ---- */
+let PRODS=[];
+async function loadProds(){
+  PRODS=await api('/api/admin/products');
+  $('#prodGrid').innerHTML=PRODS.map(p=>`
+  <div class="pcard ${p.ativo?'':'off'}">
+    <img src="${p.img||'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\'/%3E'}" alt="">
+    <div class="b">
+      <h3>${p.nome}</h3>
+      <span class="m">${BRL(p.preco)} · ${p.peso} · Estoque: <b style="font-weight:500">${p.estoque}</b>${p.ativo?'':' · <em>oculto</em>'}</span>
+      <div class="row">
+        <button class="btn btn-ghost btn-sm" data-edit="${p.id}">Editar</button>
+        <button class="btn btn-ghost btn-sm" data-toggle="${p.id}">${p.ativo?'Ocultar':'Exibir'}</button>
+        <button class="btn btn-ghost btn-sm" data-del="${p.id}" style="color:#8a3a2a;border-color:#d8b7ae">Excluir</button>
+      </div>
+    </div>
+  </div>`).join('')+`<div class="newp" id="newProd" role="button" tabindex="0">+ Cadastrar produto</div>`;
+  $('#newProd').addEventListener('click',()=>openModal());
+}
+let imgData=null;
+function openModal(p){
+  imgData=null;
+  $('#pTitle').textContent=p?'Editar produto':'Novo produto';
+  $('#p-id').value=p?p.id:'';
+  $('#p-nome').value=p?p.nome:'';
+  $('#p-desc').value=p?p.desc:'';
+  $('#p-preco').value=p?p.preco:'';
+  $('#p-estoque').value=p?p.estoque:0;
+  $('#p-peso').value=p?p.peso:'270g';
+  $('#p-serve').value=p?p.serve:'3 pessoas';
+  $('#p-ativo').checked=p?p.ativo:true;
+  $('#p-prev').src=p&&p.img?p.img:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 70'%3E%3Crect width='70' height='70' fill='%23fff'/%3E%3C/svg%3E";
+  $('#p-img').value='';
+  $('#pModal').classList.add('on');
+}
+$('#pCancel').addEventListener('click',()=>$('#pModal').classList.remove('on'));
+$('#pModal').addEventListener('click',e=>{if(e.target.id==='pModal')$('#pModal').classList.remove('on')});
+$('#p-img').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{imgData=r.result;$('#p-prev').src=imgData};
+  r.readAsDataURL(f);
+});
+$('#prodGrid').addEventListener('click',async e=>{
+  const ed=e.target.dataset.edit, tg=e.target.dataset.toggle, dl=e.target.dataset.del;
+  if(ed)openModal(PRODS.find(x=>x.id===ed));
+  if(tg){const p=PRODS.find(x=>x.id===tg);await api('/api/admin/products/'+tg,{method:'PUT',body:JSON.stringify({ativo:!p.ativo})});toast(p.ativo?'Produto oculto da loja':'Produto visível na loja');loadProds()}
+  if(dl){if(confirm('Excluir este produto? Essa ação não pode ser desfeita.')){await api('/api/admin/products/'+dl,{method:'DELETE'});toast('Produto excluído');loadProds()}}
+});
+$('#pForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  let img=null;
+  if(imgData){
+    const up=await api('/api/admin/upload',{method:'POST',body:JSON.stringify({nome:$('#p-nome').value,dataUrl:imgData})});
+    img=up.url;
+  }
+  const body={
+    nome:$('#p-nome').value,desc:$('#p-desc').value,
+    preco:+$('#p-preco').value,estoque:+$('#p-estoque').value,
+    peso:$('#p-peso').value,serve:$('#p-serve').value,
+    ativo:$('#p-ativo').checked
+  };
+  if(img)body.img=img;
+  const id=$('#p-id').value;
+  if(id)await api('/api/admin/products/'+id,{method:'PUT',body:JSON.stringify(body)});
+  else await api('/api/admin/products',{method:'POST',body:JSON.stringify(body)});
+  $('#pModal').classList.remove('on');toast('Produto salvo');loadProds();
+});
+
+/* ---- relatório ---- */
+async function loadReport(){
+  const r=await api('/api/admin/report');
+  $('#stats').innerHTML=`
+    <div class="stat"><div class="v">${r.totalPedidos}</div><div class="k">Pedidos</div></div>
+    <div class="stat"><div class="v">${BRL(r.receitaTotal)}</div><div class="k">Receita (exceto cancelados)</div></div>
+    <div class="stat"><div class="v">${BRL(r.ticketMedio)}</div><div class="k">Ticket médio</div></div>
+    <div class="stat"><div class="v">${r.porStatus.aguardando_pagamento||0}</div><div class="k">Aguardando pagamento</div></div>`;
+  const tb=$('#repTable tbody');
+  const rows=Object.entries(r.porProduto);
+  tb.innerHTML=rows.length?rows.map(([n,d])=>`<tr><td>${n}</td><td class="num">${d.qtd}</td><td class="num">${BRL(d.receita)}</td></tr>`).join('')
+    :'<tr><td colspan="3" style="color:var(--ink-soft)">Sem vendas registradas ainda.</td></tr>';
+}
+
+function loadAll(){loadOrders();loadProds()}
+
+/* sessão já ativa? */
+api('/api/admin/orders').then(()=>{show(true);loadAll()}).catch(()=>show(false));
+</script>
+</body>
+</html>

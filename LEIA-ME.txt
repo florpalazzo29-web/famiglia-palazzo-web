@@ -1,0 +1,73 @@
+═══════════════════════════════════════════════════════════════
+  FAMIGLIA PALAZZO — Sistema completo (loja + pedidos + painel)
+═══════════════════════════════════════════════════════════════
+
+O QUE VOCÊ PRECISA (uma única vez)
+──────────────────────────────────
+1. Instale o Node.js:  https://nodejs.org  (clique no botão "LTS",
+   baixe e instale como qualquer programa — só "avançar, avançar").
+2. Instale o VS Code:  https://code.visualstudio.com
+
+COMO ABRIR NO VS CODE E LIGAR O SISTEMA
+────────────────────────────────────────
+1. Descompacte o arquivo famiglia-palazzo-sistema.zip em uma pasta
+   (por exemplo, na Área de Trabalho).
+2. Abra o VS Code → menu "File / Arquivo" → "Open Folder / Abrir
+   Pasta" → escolha a pasta famiglia-palazzo-sistema.
+3. No VS Code, abra o terminal: menu "Terminal" → "New Terminal /
+   Novo Terminal" (ou atalho Ctrl + ').
+4. No terminal, digite e aperte Enter:
+
+       node server.js
+
+5. Vai aparecer "FAMIGLIA PALAZZO — sistema no ar!".
+   • Loja:        http://localhost:3000
+   • Painel adm:  http://localhost:3000/admin
+   Segure Ctrl e clique no link, ou copie no navegador.
+6. Para desligar: clique no terminal e aperte Ctrl + C.
+
+PAINEL ADMINISTRATIVO
+─────────────────────
+• Endereço: http://localhost:3000/admin
+• Senha inicial: palazzo2026   ← troque no arquivo config.json!
+• Nele você pode:
+  - Ver todos os pedidos com dados do cliente, itens e total;
+  - Mudar o status (aguardando pagamento → pago → em preparo →
+    enviado → entregue, ou cancelado — cancelar devolve o estoque);
+  - Cadastrar, editar, ocultar e excluir produtos;
+  - Alterar preços, estoque e fotos (upload direto do computador);
+  - Ver relatório: total de pedidos, receita, ticket médio e
+    vendas por produto.
+
+CONFIGURAÇÕES (arquivo config.json)
+────────────────────────────────────
+• "senhaAdmin": senha do painel — TROQUE antes de usar de verdade.
+• "pix": coloque sua chave PIX real, seu nome/empresa e banco.
+  Ela aparece para o cliente ao finalizar um pedido via PIX.
+• "cupons": os cupons de desconto. Exemplo já incluído:
+  "BENVENUTO10": 0.10  significa 10% de desconto.
+  Adicione outros na mesma linha de raciocínio (0.15 = 15%).
+
+COMO FUNCIONA O PAGAMENTO HOJE
+───────────────────────────────
+• PIX: o cliente finaliza o pedido e vê sua chave PIX na tela para
+  pagar. Quando o dinheiro cair, você marca o pedido como "Pago"
+  no painel.
+• Cartão (crédito/débito): o pedido é registrado e você combina o
+  pagamento com o cliente (ex.: link de pagamento pelo WhatsApp).
+• Pagamento automático: o código já tem o ponto de integração
+  marcado (busque "PONTO DE INTEGRAÇÃO DE PAGAMENTO" no server.js)
+  para conectar Mercado Pago, Pagar.me ou Stripe quando você criar
+  a conta no gateway. Isso exige as credenciais da sua conta.
+
+ONDE FICAM OS DADOS
+────────────────────
+• data/db.json — produtos e pedidos (faça backup deste arquivo!).
+• public/uploads — fotos enviadas pelo painel.
+• public/img — fotos originais dos potes.
+
+PARA COLOCAR NA INTERNET (quando quiser)
+─────────────────────────────────────────
+Este sistema roda em qualquer serviço que aceite Node.js
+(Render, Railway, VPS…). O comando de início é: node server.js
+Se quiser, peça ajuda ao Claude nessa etapa. :)

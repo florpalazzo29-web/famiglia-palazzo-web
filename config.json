@@ -1,0 +1,12 @@
+{
+  "porta": 3000,
+  "senhaAdmin": "palazzo2026",
+  "pix": {
+    "chave": "SUA-CHAVE-PIX-AQUI",
+    "favorecido": "Famiglia Palazzo",
+    "banco": "Seu banco"
+  },
+  "cupons": {
+    "BENVENUTO10": 0.10
+  }
+}
